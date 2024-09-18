@@ -34,7 +34,7 @@ pub const LineReader = struct {
                     if (self.nextLineStart == 0) {
                         self.buffer = try self.allocator.realloc(self.buffer, self.buffer.len * 2);
                     } else {
-                        std.mem.copy(u8, self.buffer, self.buffer[self.nextLineStart..self.len]);
+                        std.mem.copyForwards(u8, self.buffer, self.buffer[self.nextLineStart..self.len]);
                         self.len -= self.nextLineStart;
                         newlineIndex -= self.nextLineStart;
                         self.nextLineStart = 0;
